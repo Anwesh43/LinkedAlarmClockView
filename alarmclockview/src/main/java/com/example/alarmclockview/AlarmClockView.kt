@@ -213,4 +213,13 @@ class AlarmClockView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : AlarmClockView {
+            val view : AlarmClockView = AlarmClockView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
