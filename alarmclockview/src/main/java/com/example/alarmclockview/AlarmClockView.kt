@@ -188,4 +188,27 @@ class AlarmClockView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class Renderer(var view : AlarmClockView) {
+
+        private val ac : AlarmClock = AlarmClock(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            ac.draw(canvas, paint)
+            animator.animate {
+                ac.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            ac.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
